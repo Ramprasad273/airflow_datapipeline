@@ -10,13 +10,14 @@ We can further analyze and explore the data using SQL.
 
 ---
 ### Dataset
+
 **New York Taxi Data:**
 
 The yellow and green taxi trip records include fields capturing pick-up and drop-off dates/times,
 pick-up and drop-off locations, trip distances, itemized fares, rate types, payment types, and driver-reported passenger counts.
 Dataset can be found in this [link](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
----
 
+---
 ### Assumptions made
 
 1. The "green taxi trip records" dataset considered for this exercise.
