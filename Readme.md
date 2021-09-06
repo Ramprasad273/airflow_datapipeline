@@ -46,6 +46,7 @@ Now the airflow and postgres containers are up and running
 
 Open the airflow UI at 
 http://localhost:8080/admin/
+
 ---
 ### Airflow configuration
 
@@ -55,6 +56,14 @@ Below is the sample screenshot with the connection details.
 
 ![alt text](images/postgres_connection_airflow.PNG)
 
+Now we can execute the DAG and allow it to process the data.
+
+Once the application processes the data successfully,
+remove the old file and upload new data file 
+"green_tripdata" in the "airflow_datapipeline\data_files"
+location.
+
+Run the DAG again which picks up new data file and processes it accordingly.
 
 ---
 ### Data Model

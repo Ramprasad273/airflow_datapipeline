@@ -1,10 +1,5 @@
-import pandas as pd
-from sqlalchemy import Integer, String
-from .db_utils import insert_into_table, get_sql_data_into_df, delete_data_from_table
-import logging
-
 """
-This file contains all the operations needed to pull data from popular_destination_history 
+This file contains all the operations needed to pull data from popular_destination_history
 into popular_destination_current_month table.
 Operations:
     - Use the keys and query popular_destination_history table.
@@ -12,6 +7,11 @@ Operations:
     - Insert data into the popular_destination_current_month
 
 """
+import logging
+import pandas as pd
+from sqlalchemy import Integer, String
+from .db_utils import insert_into_table, get_sql_data_into_df, delete_data_from_table
+
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
@@ -49,7 +49,8 @@ def get_data(current_month):
     :return: pandas data frame with the result of query
     """
 
-    sql_query = '''select "month",pick_up,drop_off,"rank" from popular_destination_history where month = %(current_month)s ; '''
+    sql_query = '''select "month",pick_up,drop_off,"rank" 
+    from popular_destination_history where month = %(current_month)s;'''
     return get_sql_data_into_df(sql_query, current_month)
 
 
