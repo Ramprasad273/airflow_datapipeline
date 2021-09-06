@@ -1,12 +1,12 @@
+"""
+This file contains common DB util methods used in the tasks.
+"""
+
 import configparser
 import os
 import pandas as pd
 
 from sqlalchemy import create_engine
-
-"""
-This file contains common DB util methods used in the tasks.
-"""
 
 
 def get_db_engine():
@@ -54,7 +54,9 @@ def get_history_sql_data_into_df(query, previous_month, current_month):
     :return:  pandas dataframe result from the query execution
     """
     engine = get_db_engine()
-    return pd.read_sql_query(query, engine, params={"current_month": current_month, "previous_month": previous_month})
+    return pd.read_sql_query(query, engine,
+                             params={"current_month": current_month,
+                                     "previous_month": previous_month})
 
 
 def delete_data_from_table(sql_query):
@@ -75,5 +77,3 @@ def get_df_from_db(sql_query):
     """
     engine = get_db_engine()
     return pd.read_sql_query(sql_query, engine)
-
-

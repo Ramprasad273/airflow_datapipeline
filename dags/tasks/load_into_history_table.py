@@ -1,16 +1,16 @@
-import pandas as pd
-from sqlalchemy import String, Integer
-from .db_utils import insert_into_table, get_history_sql_data_into_df
-import logging
 
 """
-This file contains all the operations needed to pull data from staging into popular_destination_history table.
+This file contains all the operations needed to pull data
+from staging into popular_destination_history table.
 Operations:
     - Use the keys and query staging table.
     - Pre process and clean the dataframe.
     - Insert data into the popular_destination_history
-    
 """
+import logging
+import pandas as pd
+from sqlalchemy import String, Integer
+from .db_utils import insert_into_table, get_history_sql_data_into_df
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 

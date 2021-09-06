@@ -1,9 +1,3 @@
-from statistics import mode
-import pandas as pd
-from sqlalchemy import String, Integer
-from .db_utils import insert_into_table, get_sql_data_into_df, get_df_from_db
-import logging
-
 """
 This file contains the task to read the csv file and load the data into staging_table.
 
@@ -12,9 +6,17 @@ Operations:
     - Pre process and clean the data in the data frame.
     - based on the location look_up table, data in pick_up and drop_off columns are updated
     - insert the processed data frame into DB.
-    - Push xcom value which is the month field as it will be used by other task for queries.  
+    - Push xcom value which is the month field as it will be used by other task for queries.
 
 """
+
+import logging
+from statistics import mode
+
+import pandas as pd
+from sqlalchemy import String, Integer
+
+from .db_utils import insert_into_table, get_df_from_db
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
@@ -93,8 +95,8 @@ def preprocess_dataframe(df):
     :param df: pandas data frame which will be processed and cleaned
     :return: processed data frame which is to be loaded in DB
     """
-    df.rename(columns={'PULocationID': 'pick_up', 'DOLocationID': 'drop_off', 'lpep_pickup_datetime': 'month'},
-              inplace=True)
+    df.rename(columns={'PULocationID': 'pick_up', 'DOLocationID': 'drop_off',
+                       'lpep_pickup_datetime': 'month'},inplace=True)
     df['month'] = df['month'].dt.to_period('M')
     df['month'] = mode(df['month'])
     # filling missing value of passenger count with average value (1.3)
